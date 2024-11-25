@@ -1,1 +1,23 @@
+<!-- extend base.html -->
 {% extends "base.html" %}
+<!-- load thumbnail from sorl -->
+{% load thumbnail%}
+<!-- show title block -->
+{% block title %} Home {%endblock%}
+<!-- show body block -->
+{%block body%}
+<div>
+  <h1>This is our home page</h1>
+  <!-- for loop to run across posts -->
+  {% for post in Posts %}
+  <div>{{ post.text }}</div>
+  <div>
+    {% thumbnail post.image "200x1b00" crop="center" as im %}
+    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" />
+    {% endthumbnail %}
+  </div>
+  <hr />
+  <!-- end for -->
+  {% endfor %}
+</div>
+{%endblock%}
