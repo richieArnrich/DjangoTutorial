@@ -1,0 +1,23 @@
+{%extends "base.html"%}
+<!-- ------------------------------- -->
+{%block title%}New Post View{%endblock%}
+<!--  -->
+{% block body %}
+<!-- ------------------------ -->
+<div>
+  <form
+    method="POST"
+    action=""
+    enctype="multipart/form-data"
+    class="col-sm-4 offset-4"
+  >
+    <h1>New Post View</h1>
+    {% csrf_token %}
+    <div>
+      {{form.as_p}}
+      <button class="btn btn-lg btn-success">Submit Form</button>
+    </div>
+  </form>
+</div>
+<!-- -------------------- -->
+{% endblock %}

@@ -7,17 +7,33 @@
 <!-- show body block -->
 {%block body%}
 <div>
-  <h1>This is our home page</h1>
-  <!-- for loop to run across posts -->
-  {% for post in Posts %}
-  <div>{{ post.text }}</div>
-  <div>
-    {% thumbnail post.image "200x1b00" crop="center" as im %}
-    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" />
-    {% endthumbnail %}
+  <div class="row">
+    <!-- for loop to run across posts -->
+    {% for post in Posts %}
+    <div class="col-sm-6 col-md-4">
+      <div class="card" style="width: 18rem">
+        {% thumbnail post.image "200x100" crop="center" as im %}
+        <img src="{{ im.url }}" class="card-img-top" alt="..." />
+        {% endthumbnail %}
+        <div class="card-body">
+          <p class="card-text">{{ post.text }}</p>
+          <a href="{% url 'feed:detail' post.id %}" class="btn btn-primary"
+            >View Full Image</a
+          >
+        </div>
+      </div>
+    </div>
+    {% empty %}
+
+    <div class="col-sm-6 offset-3 text-center py-5 my-5">
+      <h3>Welcome</h3>
+      <p>No posts available</p>
+      <a href="{% url  'feed:post' %}" class="btn btn-lg btn-success"
+        >Upload Image</a
+      >
+    </div>
+    {% endfor %}
   </div>
-  <hr />
   <!-- end for -->
-  {% endfor %}
 </div>
 {%endblock%}
